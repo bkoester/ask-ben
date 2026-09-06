@@ -22,7 +22,7 @@ app = FastAPI(title="ask-ben", docs_url=None, redoc_url=None)
 def _startup():
     # Creates the vector extension, schemas and tables if missing. Ingest still owns embeddings.
     db.init_schema_with_retry()
-app.add_middleware(CORSMiddleware, allow_origins=config.ALLOWED_ORIGINS or ["*"],
+app.add_middleware(CORSMiddleware, allow_origins=config.ALLOWED_ORIGINS,   # empty list = no cross-origin access; never "*"
                    allow_origin_regex=config.ALLOWED_ORIGIN_REGEX,
                    allow_methods=["POST", "GET"], allow_headers=["content-type"])
 
