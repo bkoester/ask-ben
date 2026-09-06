@@ -24,6 +24,8 @@ TURNSTILE_SECRET = os.getenv("TURNSTILE_SECRET", "")
 IP_HASH_SALT = os.getenv("IP_HASH_SALT", "change-me")
 
 ALLOWED_ORIGINS = [o.strip() for o in os.getenv("ALLOWED_ORIGINS", "").split(",") if o.strip()]
+# Regex for preview origins, e.g. ^https://([a-z0-9-]+\.)?benkoester\.pages\.dev$ (empty = none)
+ALLOWED_ORIGIN_REGEX = os.getenv("ALLOWED_ORIGIN_REGEX", "") or None
 CITATION_BASE = os.getenv("CITATION_BASE", "https://github.com/bkoester/ask-ben/blob/main/corpus").rstrip("/")
 STATS_PASSWORD = os.getenv("STATS_PASSWORD", "")
 

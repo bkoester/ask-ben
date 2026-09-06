@@ -23,6 +23,7 @@ def _startup():
     # Creates the vector extension, schemas and tables if missing. Ingest still owns embeddings.
     db.init_schema_with_retry()
 app.add_middleware(CORSMiddleware, allow_origins=config.ALLOWED_ORIGINS or ["*"],
+                   allow_origin_regex=config.ALLOWED_ORIGIN_REGEX,
                    allow_methods=["POST", "GET"], allow_headers=["content-type"])
 
 HISTORY_DIR = Path(__file__).resolve().parent.parent / "evals" / "history"
