@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: askben
+Version: 0.1.0
+Summary: Retrieval bot over Ben Koester's writing, with a public evaluation harness
+Requires-Python: >=3.12
+Requires-Dist: fastapi>=0.115
+Requires-Dist: uvicorn[standard]>=0.30
+Requires-Dist: httpx>=0.27
+Requires-Dist: psycopg[binary]>=3.2
+Requires-Dist: pgvector>=0.3
+Requires-Dist: anthropic>=0.40
+Requires-Dist: boto3>=1.35
+Requires-Dist: pyyaml>=6
+Requires-Dist: python-frontmatter>=1.1
+Requires-Dist: pydantic>=2.7
+Provides-Extra: dev
+Requires-Dist: pytest>=8; extra == "dev"
+Requires-Dist: ruff>=0.6; extra == "dev"

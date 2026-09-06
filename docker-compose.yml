@@ -1,0 +1,20 @@
+# Local development only. On the host, the api + tunnel entries live in ec2-apps/docker-compose.yml
+# (same pattern as big-ten-jobs-web) and Postgres is a shared pgvector container there.
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: askben
+      POSTGRES_PASSWORD: askben
+      POSTGRES_DB: askben
+    ports: ["127.0.0.1:5433:5432"]
+    volumes: ["askben-pg:/var/lib/postgresql/data"]
+  api:
+    build: .
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://askben:askben@db:5432/askben
+    ports: ["127.0.0.1:8090:8080"]
+    depends_on: [db]
+volumes:
+  askben-pg: {}

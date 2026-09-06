@@ -1,0 +1,3 @@
+# Hand labels for the judge-reliability check (PLAN.md §4). Fill in after the first runs:
+# for ~30 (question, answer) pairs, Ben records pass/fail; run_eval.py compares the judge to these.
+labels: []

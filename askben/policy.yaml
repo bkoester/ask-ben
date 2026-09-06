@@ -1,0 +1,26 @@
+# Off-limits topics and the decline sentence. PLACEHOLDER wording until Ben answers
+# QUESTIONS.md H1; the categories are from PLAN.md §0. Patterns are case-insensitive regexes
+# matched against the question. Deterministic on purpose: a declined question never
+# reaches the model, so it costs nothing and can't be talked around.
+decline_sentence: >-
+  That's outside what this bot covers. It answers questions about Ben's writing and projects.
+no_source_sentence: >-
+  There's nothing from Ben on that here. Try a question about the writing or the projects.
+offline_sentence: >-
+  The bot is offline for now. The rest of the site still works.
+
+off_limits:
+  - name: employer-opinions
+    patterns: ["\\b(boss|manager|supervisor|coworker|colleague|employer)\\b", "think(s)? (of|about) (his|the) (job|team|university|department|hr)\\b"]
+  - name: job-search
+    patterns: ["\\b(looking for|open to|available for|seeking) (a )?(new )?(job|work|role|position|opportunit)", "\\b(hiring|recruit|resume|résumé|cv|interview|job search|job hunt|leaving|quit)\\b", "\\b(salary|compensation|pay|rate|how much (does|did) .* (make|earn))\\b"]
+  - name: family
+    patterns: ["\\b(wife|husband|spouse|partner|married|marriage|divorc|kids?|children|son|daughter|family)\\b"]
+  - name: health
+    patterns: ["\\b(health|medical|illness|sick|diagnos|therapy|medication|mental)\\b"]
+  - name: personal-details
+    patterns: ["\\b(how old|age|birthday|born in|address|phone number|where (does|do) .* live)\\b"]
+  - name: politics-religion
+    patterns: ["\\b(politic|vote|election|democrat|republican|religio|church|god)\\b"]
+  - name: injection
+    patterns: ["ignore (all |your |previous |the )*(instructions|rules|prompt)", "\\b(system prompt|developer message)\\b", "(speak|answer|respond|talk) (as|like) ben\\b", "\\bfirst person\\b", "\\b(journal|diary)\\b", "pretend (you are|to be)", "\\bjailbreak\\b"]
