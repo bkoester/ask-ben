@@ -6,9 +6,8 @@ def _bool(name: str, default: bool) -> bool:
 
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://askben:askben@localhost:5433/askben")
 
-JINA_API_KEY = os.getenv("JINA_API_KEY", "")
-JINA_MODEL = os.getenv("JINA_MODEL", "jina-embeddings-v3")
-EMBEDDING_DIM = 1024
+EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "amazon.titan-embed-text-v2:0")
+EMBEDDING_DIM = 1024  # Titan v2 supports 1024 / 512 / 256
 
 BEDROCK_REGION = os.getenv("BEDROCK_REGION", "us-east-2")
 BEDROCK_MODEL = os.getenv("BEDROCK_MODEL", "us.anthropic.claude-haiku-4-5-20251001-v1:0")

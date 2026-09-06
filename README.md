@@ -4,7 +4,7 @@ A retrieval bot over Ben Koester's published writing, with the evaluation harnes
 Serves `ask.benkoester.com`; the widget lives on the static site (`bkoester/site`).
 
 **Design in one paragraph.** The corpus is Markdown answers Ben wrote for publication
-(`corpus/`), embedded with Jina v3 into Postgres + pgvector. A question first hits a
+(`corpus/`), embedded with Titan Text Embeddings v2 (Bedrock, instance role) into Postgres + pgvector. A question first hits a
 deterministic off-limits check (`askben/policy.yaml`); a match is declined without any model
 call. Otherwise the top-k documents are retrieved; if the best similarity is below a threshold
 the bot says it has nothing from Ben on that. Only then does Haiku 4.5 (Bedrock, instance
@@ -18,7 +18,7 @@ judge, and the run history that the site renders as its evaluation page.
 ```bash
 python -m venv .venv && . .venv/bin/activate
 pip install -e '.[dev]'
-cp .env.example .env            # add JINA_API_KEY; AWS creds via your normal profile
+cp .env.example .env            # AWS creds via your normal profile; no vendor keys
 docker compose up -d db
 python -m askben.ingest         # embeds corpus/
 uvicorn askben.api:app --reload --port 8090

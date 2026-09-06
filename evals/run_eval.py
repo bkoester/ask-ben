@@ -1,6 +1,6 @@
 """Run the golden set in-process and write evals/history/<date>-<sha>.json.
 
-    python -m evals.run_eval            # full run (needs DB, Jina, Bedrock)
+    python -m evals.run_eval            # full run (needs DB and Bedrock)
     python -m evals.run_eval --dry      # deterministic checks only, no model calls
 
 Triggered on change by scripts/eval-on-change.sh, not on a timer (PLAN.md §4).

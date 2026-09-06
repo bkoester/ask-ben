@@ -6,7 +6,6 @@
 from __future__ import annotations
 import json
 import sys
-from psycopg.types.json import Jsonb  # noqa: F401  (kept for parity with db helpers)
 from . import db
 from .corpus import load_corpus
 from .embeddings import embed
