@@ -54,9 +54,24 @@ def connect():
         yield conn
 
 def init_schema() -> None:
-    with connect() as conn:
+    """Idempotent. Plain connect (no vector adapter) because the extension may not exist yet."""
+    with psycopg.connect(config.DATABASE_URL) as conn:
         conn.execute(SCHEMA_SQL)
         conn.commit()
+
+def init_schema_with_retry(attempts: int = 10, delay_s: float = 3.0) -> bool:
+    """Postgres may still be starting when the API comes up; try for ~30 s, then give up quietly.
+    /health keeps reporting the real state either way."""
+    import time
+    for i in range(attempts):
+        try:
+            init_schema()
+            return True
+        except Exception:
+            if i == attempts - 1:
+                return False
+            time.sleep(delay_s)
+    return False
 
 def local_day_start() -> datetime:
     tz = ZoneInfo(config.LOCAL_TZ)

@@ -17,6 +17,11 @@ from psycopg.types.json import Jsonb
 from . import config, db, pipeline
 
 app = FastAPI(title="ask-ben", docs_url=None, redoc_url=None)
+
+@app.on_event("startup")
+def _startup():
+    # Creates the vector extension, schemas and tables if missing. Ingest still owns embeddings.
+    db.init_schema_with_retry()
 app.add_middleware(CORSMiddleware, allow_origins=config.ALLOWED_ORIGINS or ["*"],
                    allow_methods=["POST", "GET"], allow_headers=["content-type"])
 
